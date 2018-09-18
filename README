@@ -1,0 +1,76 @@
+nhance@Home-Office:/mnt/c/Users/Nick Hance/Source/js4crm-resources/autocomplete-city$ npm init
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help json` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg>` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (autocomplete-city)
+version: (1.0.0)
+description: Autocompletes City names in Dynamics using Xrm API
+entry point: (index.js)
+test command:
+git repository:
+keywords: xrm, dynamics, autocomplete
+author: Nick Hance <nhance@buildbettersoftware.com>
+license: (ISC) Private
+Sorry, license should be a valid SPDX license expression (without "LicenseRef"), "UNLICENSED", or "SEE LICENSE IN <filename>".
+license: (ISC) SEE LICENSE IN LICENSE.md
+About to write to /mnt/c/Users/Nick Hance/Source/js4crm-resources/autocomplete-city/package.json:
+
+{
+  "name": "autocomplete-city",
+  "version": "1.0.0",
+  "description": "Autocompletes City names in Dynamics using Xrm API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "xrm",
+    "dynamics",
+    "autocomplete"
+  ],
+  "author": "Nick Hance <nhance@buildbettersoftware.com>",
+  "license": "SEE LICENSE IN LICENSE.md"
+}
+
+
+Is this OK? (yes) yes
+nhance@Home-Office:/mnt/c/Users/Nick Hance/Source/js4crm-resources/autocomplete-city$ npm install --save @types/xrm
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN autocomplete-city@1.0.0 No repository field.
+
++ @types/xrm@9.0.7
+added 1 package from 6 contributors and audited 1 package in 7.198s
+found 0 vulnerabilities
+
+nhance@Home-Office:/mnt/c/Users/Nick Hance/Source/js4crm-resources/autocomplete-city$ npm install --save-dev webpack
+npm WARN autocomplete-city@1.0.0 No repository field.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.4 (node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.4: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
++ webpack@4.19.1
+added 316 packages from 279 contributors and audited 4162 packages in 33.926s
+found 0 vulnerabilities
+
+nhance@Home-Office:/mnt/c/Users/Nick Hance/Source/js4crm-resources/autocomplete-city$ npm install --save-dev webpack-cli
+npm WARN autocomplete-city@1.0.0 No repository field.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.4 (node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.4: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
++ webpack-cli@3.1.0
+added 83 packages from 37 contributors and audited 4309 packages in 28.484s
+found 0 vulnerabilities
+
+nhance@Home-Office:/mnt/c/Users/Nick Hance/Source/js4crm-resources/autocomplete-city$ npm install -g typescript
+/home/nhance/.nvm/versions/node/v10.8.0/bin/tsc -> /home/nhance/.nvm/versions/node/v10.8.0/lib/node_modules/typescript/bin/tsc
+/home/nhance/.nvm/versions/node/v10.8.0/bin/tsserver -> /home/nhance/.nvm/versions/node/v10.8.0/lib/node_modules/typescript/bin/tsserver
++ typescript@3.0.3
+added 1 package from 1 contributor in 4.298s
+nhance@Home-Office:/mnt/c/Users/Nick Hance/Source/js4crm-resources/autocomplete-city$ tsc --init
+message TS6071: Successfully created a tsconfig.json file.

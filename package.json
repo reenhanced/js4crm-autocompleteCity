@@ -1,0 +1,25 @@
+{
+  "name": "autocomplete-city",
+  "version": "1.0.0",
+  "description": "Autocompletes City names in Dynamics using Xrm API",
+  "private": true,
+  "scripts": {
+    "build": "tsc && webpack"
+  },
+  "keywords": [
+    "xrm",
+    "dynamics",
+    "autocomplete"
+  ],
+  "author": "Nick Hance <nhance@buildbettersoftware.com>",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "dependencies": {
+    "@types/xrm": "^9.0.7"
+  },
+  "devDependencies": {
+    "ts-loader": "^5.1.1",
+    "typescript": "^3.0.3",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0"
+  }
+}
