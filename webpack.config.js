@@ -2,13 +2,13 @@ const path = require('path');
 
 module.exports = {
   entry: './src/index.ts',
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
   target: 'web',
   module: {
     rules: [{
       test: /\.tsx?$/,
       use: 'ts-loader',
-      exclude: /node_modules/
+      exclude: [/node_modules/, /spec\.ts/]
     }]
   },
   resolve: {
