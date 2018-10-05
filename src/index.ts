@@ -25,9 +25,9 @@ export function OnLoad() {
   fields.forEach(fieldName => {
     let autolookupControl = Xrm.Page.getControl<Xrm.Controls.AutoLookupControl>(fieldName);
 
+    // Enable autocomplete
     autolookupControl.addOnKeyPress(OnKeypress);
   });
-  // Enable autocomplete
 
   // After selection, populate city details into mapped fields
 }

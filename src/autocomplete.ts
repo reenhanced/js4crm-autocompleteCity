@@ -28,9 +28,7 @@ export class AutoComplete {
   }
 
   select(id: string) {
-    const result: any;
-
-    // iterate _lastAutocomplete and return result with matching id
+    return this._lastAutocomplete.find((res: any) => res.id === id);
   }
 
 }
