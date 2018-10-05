@@ -1,4 +1,4 @@
-import config from './config';
+import { config } from './config';
 
 export class AutoComplete {
   private subscription_key: string;
@@ -27,7 +27,7 @@ export class AutoComplete {
     return results;
   }
 
-  select(id: string) {
+  select(id: string|number) {
     return this._lastAutocomplete.find((res: any) => res.id === id);
   }
 
@@ -38,3 +38,7 @@ const autoCompleteInstance = new AutoComplete();
 export var search = function(query: string): Promise<Xrm.Controls.AutoCompleteResult[]> {
   return autoCompleteInstance.autocomplete(query);
 };
+
+export var select = function(id: string|number): any {
+  return autoCompleteInstance.select(id);
+}

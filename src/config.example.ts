@@ -1,6 +1,6 @@
 var config = {
     azureSubscriptionKey: 'gIwMTb0tHeCw45mPZyaYMP0FFo4uYdweQhe1OXqb_cE',
-    autocompleteFields: ['address1_city'],
+    autocompleteFields: ['address1_street1'],
 
     // When a value for the autocomplete above is selected,
     // We'll send out another json request to get details on the
@@ -11,7 +11,7 @@ var config = {
     // in Xrm
     responseMapping: {
       // Dynamics field name => Address attribute or function to transform address into value
-      'address1_line1': (address: any) => { `${address.streetNumber} ${address.streetName}`; },
+      'address1_street1': (address: any) => { `${address.streetNumber} ${address.streetName}`; },
       'address1_city': 'municipalitySubdivision',
       'address1_stateorprovince': 'countrySubdivision',
       'address1_country': 'countryCodeISO3'
