@@ -27,8 +27,15 @@ export class AutoComplete {
     return results;
   }
 
-  select(id: string|number) {
-    return this._lastAutocomplete.find((res: any) => res.id === id);
+  select(id: string|number): Xrm.Controls.AutoCompleteResult | undefined {
+    const match = this._lastAutocomplete.find((res: Xrm.Controls.AutoCompleteResult) => res.id === id);
+      console.log(this._lastAutocomplete);
+      console.log(id);
+    if (match) {
+      return match[0];
+    } else {
+      return undefined;
+    }
   }
 
 }
@@ -39,6 +46,6 @@ export var search = function(query: string): Promise<Xrm.Controls.AutoCompleteRe
   return autoCompleteInstance.autocomplete(query);
 };
 
-export var select = function(id: string|number): any {
+export var select = function(id: string|number) {
   return autoCompleteInstance.select(id);
 }

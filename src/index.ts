@@ -22,36 +22,46 @@ var OnKeypress = function(ext: Xrm.Events.EventContext) {
 };
 
 var OnSelect = function(ext: Xrm.Events.EventContext) {
-  console.log(`OnChange(${ext})`);
+  console.log(`OnChange`);
   console.log(ext);
 
   const attr = ext.getEventSource() as Xrm.Attributes.Attribute;
-  const selected = attr.getValue();
+  const selected = attr.getValue(); // Not yet set!
 
-  const result = lastResults.find((res: Xrm.Controls.AutoCompleteResult) => res.fields[0] === selected);
+  console.log(attr);
+  console.log(selected);
 
-  console.log(`Selected result ${result}`);
+  const autocompleteResult: any = lastResults.find((res: Xrm.Controls.AutoCompleteResult) => res.fields[0] === selected);
+
+  if (autocompleteResult == undefined) {
+    console.log(`no match for ${selected}`);
+    return;
+  }
+
+  console.log("lastresults", lastResults);
+  console.log(`Selected result`, autocompleteResult);
+
+  const azureResult: any = select(autocompleteResult.id);
+  console.log(`azure Result:`, azureResult);
+
+  if (azureResult == undefined) {
+    console.log(`no match for ${autocompleteResult.id}`);
+    return;
+  }
 
   for (let dynamicsAttribute in config.responseMapping) {
+    let value: string;
+
     const attrib = Xrm.Page.getAttribute(dynamicsAttribute);
     const mapping = config.responseMapping[dynamicsAttribute];
 
-    let value: string;
-    
-    if (result !== undefined) {
-      const autocompleteResult = select(result.id);
-      console.log(`Autocomplete Result: ${autocompleteResult}`);
-
-      if (autocompleteResult) {
-        if (typeof(mapping) == 'function') {
-          value = mapping(autocompleteResult);
-        } else {
-          value = autocompleteResult[mapping];
-        }
-        console.log(`Setting ${dynamicsAttribute} to ${value}`);
-        attrib.setValue(value);
-      }
+    if (typeof(mapping) == 'function') {
+      value = mapping(azureResult.address);
+    } else {
+      value = azureResult.address[mapping];
     }
+    console.log(`Setting `, dynamicsAttribute, ` to `, value);
+    attrib.setValue(value);
   }
 
 };
