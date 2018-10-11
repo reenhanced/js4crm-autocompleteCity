@@ -11,8 +11,26 @@ export var config: autocompleteConfig = {
   // We'll use the results from the last autocomplete to fill in
   // other fields.
   //
-  // This block configures how values in the azureSearchAddress object
+  // This block configures how values in the azureGetSearchAddress.Result object
   // will be mapped to form values in Xrm
+  //
+  // Example address object:
+  //    "address": {
+  //      "streetNumber": "15127",
+  //      "streetName": "NE 24th St",
+  //      "municipalitySubdivision": "Redmond",
+  //      "municipality": "Redmond, Adelaide, Ames Lake, Avondale, Earlmount",
+  //      "countrySecondarySubdivision": "King",
+  //      "countryTertiarySubdivision": "Seattle East",
+  //      "countrySubdivision": "WA",
+  //      "postalCode": "98052",
+  //      "extendedPostalCode": "980525544",
+  //      "countryCode": "US",
+  //      "country": "United States Of America",
+  //      "countryCodeISO3": "USA",
+  //      "freeformAddress": "15127 NE 24th St, Redmond, WA 980525544",
+  //      "countrySubdivisionName": "Washington"
+  //    }
   responseMapping: {
     // Dynamics field to update => string|function to autofill on select
     'address1_line1': (address) => { return `${address.streetNumber} ${address.streetName.split(',')[0]}` },
