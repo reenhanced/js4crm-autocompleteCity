@@ -25,7 +25,7 @@ export var config: autocompleteConfig = {
   responseMapping: {
     // Dynamics field to update => string|function to autofill on select
     'address1_line1': (address: any) => { return `${address.streetNumber} ${address.streetName.split(',')[0]}` },
-    'address1_city': 'municipalitySubdivision',
+    'address1_city': (address: any) => { return `${address.municipality.split(',')[0]}` },
     'address1_stateorprovince': 'countrySubdivision',
     'address1_country': 'countryCodeISO3'
   }
