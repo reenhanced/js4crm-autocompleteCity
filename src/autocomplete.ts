@@ -1,13 +1,14 @@
 import { config } from './config';
+/// <reference path="../types/application.d.ts" />
 
 export class AutoComplete {
   private subscription_key: string;
   private format: string = 'json';
 
-  private _lastAutocomplete: any;
+  private _lastAutocomplete: Array<azureMapsGetSearchAddress.Result>;
 
   constructor() {
-    this.subscription_key = config.azureSubscriptionKey;
+    this.subscription_key = config.azureMapsSubscriptionKey;
     this._lastAutocomplete = [];
   }
 
@@ -27,8 +28,8 @@ export class AutoComplete {
     return results;
   }
 
-  select(id: string|number): Xrm.Controls.AutoCompleteResult | undefined {
-    const match = this._lastAutocomplete.find((res: Xrm.Controls.AutoCompleteResult) => res.id === id);
+  select(id: string|number): azureMapsGetSearchAddress.Result | undefined {
+    const match = this._lastAutocomplete.find((res: azureMapsGetSearchAddress.Result) => res.id === id);
 
     if (match) {
       return match;

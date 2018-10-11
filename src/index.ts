@@ -1,7 +1,8 @@
-import { config, responseMapping }  from './config';
+import { config }  from './config';
 import { search, select } from './autocomplete';
 
 /// <reference types="xrm" />
+/// <reference path="../types/application.d.ts" />
 
 var lastResults: Xrm.Controls.AutoCompleteResult[] = [];
 
@@ -25,14 +26,14 @@ var OnSelect = function(ext: Xrm.Events.EventContext) {
   const attr = ext.getEventSource() as Xrm.Attributes.Attribute;
   const selected = attr.getValue(); // Not yet set!
 
-  const autocompleteResult: any = lastResults.find((res: Xrm.Controls.AutoCompleteResult) => res.fields[0] === selected);
+  const autocompleteResult: Xrm.Controls.AutoCompleteResult|undefined = lastResults.find((res: Xrm.Controls.AutoCompleteResult) => res.fields[0] === selected);
   if (autocompleteResult == undefined) { return; }
 
-  const azureResult: any = select(autocompleteResult.id);
+  const azureResult: azureMapsGetSearchAddress.Result|undefined = select(autocompleteResult.id);
   if (azureResult == undefined) { return; }
 
   for (let dynamicsAttribute in config.responseMapping) {
-    let value: string;
+    let value: string | undefined;
 
     const attrib = Xrm.Page.getAttribute(dynamicsAttribute);
     const mapping = config.responseMapping[dynamicsAttribute];
