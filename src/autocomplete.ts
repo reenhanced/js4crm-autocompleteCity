@@ -29,10 +29,9 @@ export class AutoComplete {
 
   select(id: string|number): Xrm.Controls.AutoCompleteResult | undefined {
     const match = this._lastAutocomplete.find((res: Xrm.Controls.AutoCompleteResult) => res.id === id);
-      console.log(this._lastAutocomplete);
-      console.log(id);
+
     if (match) {
-      return match[0];
+      return match;
     } else {
       return undefined;
     }

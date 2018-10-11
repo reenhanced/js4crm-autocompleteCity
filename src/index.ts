@@ -22,32 +22,14 @@ var OnKeypress = function(ext: Xrm.Events.EventContext) {
 };
 
 var OnSelect = function(ext: Xrm.Events.EventContext) {
-  console.log(`OnChange`);
-  console.log(ext);
-
   const attr = ext.getEventSource() as Xrm.Attributes.Attribute;
   const selected = attr.getValue(); // Not yet set!
 
-  console.log(attr);
-  console.log(selected);
-
   const autocompleteResult: any = lastResults.find((res: Xrm.Controls.AutoCompleteResult) => res.fields[0] === selected);
-
-  if (autocompleteResult == undefined) {
-    console.log(`no match for ${selected}`);
-    return;
-  }
-
-  console.log("lastresults", lastResults);
-  console.log(`Selected result`, autocompleteResult);
+  if (autocompleteResult == undefined) { return; }
 
   const azureResult: any = select(autocompleteResult.id);
-  console.log(`azure Result:`, azureResult);
-
-  if (azureResult == undefined) {
-    console.log(`no match for ${autocompleteResult.id}`);
-    return;
-  }
+  if (azureResult == undefined) { return; }
 
   for (let dynamicsAttribute in config.responseMapping) {
     let value: string;
@@ -60,7 +42,6 @@ var OnSelect = function(ext: Xrm.Events.EventContext) {
     } else {
       value = azureResult.address[mapping];
     }
-    console.log(`Setting `, dynamicsAttribute, ` to `, value);
     attrib.setValue(value);
   }
 
