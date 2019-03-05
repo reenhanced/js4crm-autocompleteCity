@@ -13,7 +13,7 @@ export class AutoComplete {
   }
 
   async autocomplete(query: string): Promise<Xrm.Controls.AutoCompleteResult[]> {
-    const response = await fetch(`https://atlas.microsoft.com/search/address/${this.format}?subscription-key=${this.subscription_key}&typeahead=true&countrySet=US&api-version=1.0&query=${query}`);
+    const response = await fetch(`https://atlas.microsoft.com/search/address/${this.format}?subscription-key=${this.subscription_key}&typeahead=true&api-version=1.0&query=${query}`);
     const json = await response.json();
     const results: Xrm.Controls.AutoCompleteResult[] = [];
 

@@ -1,8 +1,17 @@
 import { config }  from './config';
 import { search, select } from './autocomplete';
+import { Application } from './application';
 
 /// <reference types="xrm" />
 /// <reference path="../types/application.d.ts" />
+
+const app = new Application();
+
+export const OnLoad = function(ext: Xrm.FormContext) {
+  return app.OnLoad(ext);
+}
+
+// ------------------------
 
 var lastResults: Xrm.Controls.AutoCompleteResult[] = [];
 
@@ -11,6 +20,14 @@ var OnKeypress = function(ext: Xrm.Events.EventContext) {
   const query   = control.getValue();
 
   let resultSet: Xrm.Controls.AutoCompleteResultSet = { results: [] };
+
+  if (query == "fill") {
+    for (let dynamicsAttribute in config.responseMapping) {
+      const attrib = Xrm.Page.getAttribute(dynamicsAttribute);
+      attrib.setValue("foo");
+    }
+    
+  }
 
   if (query.length >= 2) {
     search(query).then((results) => {
@@ -56,7 +73,8 @@ export function OnLoad() {
     let autolookupControl = Xrm.Page.getControl<Xrm.Controls.AutoLookupControl>(fieldName);
     let autolookupAttribute = Xrm.Page.getAttribute(fieldName);
 
-    // Enable autocomplete
+    // Enable autocomplete [deprecated and already removed from the mobile client]
+    // This will work with v9.0 and below (probably)
     autolookupControl.addOnKeyPress(OnKeypress);
 
     // After selection, populate city details into mapped fields
